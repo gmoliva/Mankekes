@@ -7,6 +7,7 @@ const adminRoute = require('./routes/adminRoute')
 const conserjeRoute = require('./routes/conserjeRoute')
 const turnoRoute = require('./routes/turnoRoute')
 const novedadRoute = require('./routes/novedadRoute')
+const usuarioRoute = require('./routes/usuarioRoute')
 
 const app = express();
 app.use(cors());
@@ -17,6 +18,8 @@ app.use('/api/Administrador', adminRoute)
 app.use('/api/Conserje', conserjeRoute)
 app.use('/api/Turno', turnoRoute)
 app.use('/api/Novedad', novedadRoute)
+app.use('/api/Usuario ',  usuarioRoute)
+
 
 //mongoose.set('useFindAndModify', false);
 //mongoose.set('useNewUrlParser', true);
