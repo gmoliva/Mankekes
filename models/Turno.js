@@ -12,7 +12,7 @@ const turnoSchema = new Schema({
 	},
 	idConserje: {
 		type: Schema.Types.ObjectId,
-		ref: 'Conserje'
+		ref: 'Usuario'
 	},
 	entrada: {type: String},
 	salida: {type: String}

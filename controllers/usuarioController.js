@@ -66,11 +66,24 @@ const getCurrentAdmin = (req, res) => {
 	})
 }
 
+// OBTENER TODOS LOS CONSERJES
+
+const getAllConserjes = (req, res) => {
+    
+	Usuario.find({tipoUsuario: 1},{estadoUsuario:0}, (err, usuarios) => {
+		if (err) {
+			res.status(400).send({ message: "Error al listar" })
+		}
+		res.status(200).send(usuarios);
+	})
+}
+
 
 module.exports = {
   createUsuario,
   getUsuario,
   getSpecific,
   updateUsuario,
-  getCurrentAdmin
+  getCurrentAdmin,
+  getAllConserjes
 }
