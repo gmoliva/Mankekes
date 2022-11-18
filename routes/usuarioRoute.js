@@ -5,7 +5,8 @@ const usuarioController = require('../controllers/usuarioController');
 
 api.post('/', usuarioController.createUsuario);
 api.get('/', usuarioController.getUsuario);
-api.get('/:id', usuarioController.getSpecific);
-api.put('/:id', usuarioController.updateUsuario);
+api.get('/search/:id', usuarioController.getSpecific);
+api.put('/update/:id', usuarioController.updateUsuario);
+api.get('/admin/', usuarioController.getCurrentAdmin);
 
 module.exports = api;

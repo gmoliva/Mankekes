@@ -18,7 +18,7 @@ app.use('/api/Administrador', adminRoute)
 app.use('/api/Conserje', conserjeRoute)
 app.use('/api/Turno', turnoRoute)
 app.use('/api/Novedad', novedadRoute)
-app.use('/api/Usuario ',  usuarioRoute)
+app.use('/api/Usuario', usuarioRoute)
 
 
 //mongoose.set('useFindAndModify', false);

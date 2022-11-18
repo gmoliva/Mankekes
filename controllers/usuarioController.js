@@ -2,7 +2,7 @@ const Usuario = require('../models/Usuario')
 
 // CREACION DE NUEVO USUARIO
 const createUsuario = async (req, res) => {
-  	const { rut, nombre, domicilio, email, numero, tipoUsuario, estadoUsuario, body } = req.body;	  
+  	const { rut, nombre, domicilio, email, numero, tipoUsuario, estadoUsuario} = req.body;	  
 	const newUsuario = new Usuario({
 		rut,
 		nombre,
@@ -10,8 +10,7 @@ const createUsuario = async (req, res) => {
 		email, 
         numero,
         tipoUsuario,
-        estadoUsuario,
-		body 
+        estadoUsuario
 	});
 
 	newUsuario.save((err, usuario) => {
@@ -55,11 +54,23 @@ const updateUsuario = (req, res) => {
 	})
 }
 
+// OBTENER EL ADMIN ACTUALMENTE CONTRATADO
+
+const getCurrentAdmin = (req, res) => {
+    
+	Usuario.find({tipoUsuario: 0},{estadoUsuario:0}, (err, usuarios) => {
+		if (err) {
+			res.status(400).send({ message: "Error al listar" })
+		}
+		res.status(200).send(usuarios);
+	})
+}
 
 
 module.exports = {
   createUsuario,
   getUsuario,
   getSpecific,
-  updateUsuario
+  updateUsuario,
+  getCurrentAdmin
 }
