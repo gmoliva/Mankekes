@@ -24,7 +24,7 @@ const getTurno = (req, res) => {
 		if (err) return res.status(400).send({ message: err })
 		res.send(turno)
 	})
-	
+
 }
 
 const updateTurno = (req, res) => {
@@ -41,7 +41,7 @@ const getSpecific = (req, res) => {
     Turno.findById(id, (err, turno) => {
         if (err) {
             res.status(400).send({ message: err })
-		  }
+		}
         res.status(200).send(turno);
 })
 }
@@ -90,24 +90,28 @@ const sendEmail = async (mail , res) => {
 }
 
 const setEntrada = async (req, res) => {
-	let id = req.params.id 
-	
+	let id = req.params.id
 	Turno.findById(id)
 	.select('email')
 	.populate('idConserje')
 	.exec((err, result) => {
 		if (err) return handleError(err);
-
 		sendEmail(result.idConserje.email)
 		Turno.findByIdAndUpdate(id, req.body, (err, turno) => {
-			if(err) return res.status(400).send({"error":err})	
+			if(err) return res.status(400).send({"error":err})
 			res.status(201).send(turno)
-	}	
+	}
 	)
 	})
-	
+
 }
 
+const getWorkingHours = (req, res) =>{
+	let id = req.params.id
+	Turno.findById(id, (req, res, entrada, salida)=>{
+		
+	})
+}
 
 module.exports = {
 	createTurno,
