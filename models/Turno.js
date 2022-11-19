@@ -10,7 +10,7 @@ const turnoSchema = new Schema({
 		type: Number, enum: [0, 1],
 		required: true
 	},
-	idConserje: {
+	idUsuario: {
 		type: Schema.Types.ObjectId,
 		ref: 'Usuario'
 	},
