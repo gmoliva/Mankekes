@@ -7,7 +7,6 @@ Proyecto de mejora del problema de administración de conserjes.
 Instalar dependencias:
 
 ### `npm install`
-### `npm install multer`
 
 Instala los módulos necesarios para el funcionamiento. Además,
 crear archivo `.env` con las siguientes variables de ambiente definidas: 
