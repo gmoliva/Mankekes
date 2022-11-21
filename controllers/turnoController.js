@@ -61,17 +61,16 @@ const getSpecific = (req, res) => {
 }
 
 
-const setEntrada = async (req, res) => {
+const setEntradaSalida = async (req, res) => {
 	let id = req.params.id
 
 	Turno.findById(id)
 		.select('email')
 		.populate('idUsuario')
 		.exec((err, result) => {
-			if (err) return handleError(err);
 
-			console.log(result.idUsuario.email)
-			mailer.sendEmail(result.idUsuario.email)
+			mailer.sendEmail(req, result.idUsuario.email)
+
 			Turno.findByIdAndUpdate(id, req.body, (err, turno) => {
 				if (err) return res.status(400).send({
 					"error": err
@@ -88,5 +87,5 @@ module.exports = {
 	getTurno,
 	updateTurno,
 	getSpecific,
-	setEntrada
+	setEntradaSalida
 }

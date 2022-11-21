@@ -49,7 +49,7 @@ const getSpecific = (req, res) => {
 const updateUsuario = (req, res) => {
     let id = req.params.id
     Usuario.findByIdAndUpdate(id, req.body, (err, usuario) => {
-		if (err) return res.status(400).send({ message: "Error al modificar novedad" })
+		if (err) return res.status(400).send({ message: "Error al modificar usuario" })
 		res.send(usuario)
 	})
 }
