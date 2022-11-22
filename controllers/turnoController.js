@@ -26,7 +26,7 @@ const createTurno = (req, res) => {
 
 }
 
-const getTurno = (req, res) => {
+const getTurnos = (req, res) => {
 
 	Turno.find({}, (err, turno) => {
 		if (err) return res.status(400).send({
@@ -35,6 +35,18 @@ const getTurno = (req, res) => {
 		res.send(turno)
 	})
 
+}
+
+const getTurno = (req, res) => {
+	let id = req.params.id;
+	Turno.findById(id, (err, turno) => {
+		if (err) {
+			res.status(400).send({
+				message: err
+			})
+		}
+		res.status(200).send(turno);
+	})
 }
 
 const updateTurno = (req, res) => {
@@ -47,17 +59,14 @@ const updateTurno = (req, res) => {
 	})
 }
 
-
-const getSpecific = (req, res) => {
-	let id = req.params.id;
-	Turno.findById(id, (err, turno) => {
-		if (err) {
-			res.status(400).send({
-				message: err
-			})
-		}
-		res.status(200).send(turno);
+const deleteTurno = (req, res) => {
+	let id = req.params.id
+	Turno.findByIdAndDelete(id, (err, result) => {
+		if (err) return res.status(400).send({ message: err })
+		res.status(200).send(result)
 	})
+
+
 }
 
 
@@ -84,8 +93,9 @@ const setEntradaSalida = async (req, res) => {
 
 module.exports = {
 	createTurno,
+	getTurnos,
 	getTurno,
 	updateTurno,
-	getSpecific,
+	deleteTurno,
 	setEntradaSalida
 }

@@ -15,15 +15,23 @@ const sendEmail = async (request, email) => {
 
     if (request.body.entrada) {
         title = "Notificacion de entrada"
-        content = "Este correo se envia de forma automatica a los maricones que acaban de entrar a turno. Favor no responder."
+        content = "Conserje ha entrado."
     }
 
     if (request.body.salida) {
         title = "Notificacion de salida"
-        content = "Este correo se envia de forma automatica a los maricones que acaban de salir de turno. Favor no responder."
+        content = "Conserje se ha retirado."
     }
 
+    if (request.body.asunto) {
+        title = "Nueva novedad: " + request.body.asunto
+        content = "" + request.body.descripcion
+    }
 
+    if (request.body.justificacion) {
+        title = "Conserje no puede asistir a su turno"
+        content = request.body.justificacion
+    }
 
     // let directory = mail
 

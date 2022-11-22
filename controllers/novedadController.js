@@ -22,6 +22,16 @@ const getNovedades = (req, res) => {
 	})
 }
 
+const getNovedad = (req, res) => {
+	let id = req.params.id
+	Novedad.findById(id, (err, novedad) => {
+		if (err) {
+			res.status(400).send({ message: err })
+		}
+		res.status(200).send(novedad);
+	})
+}
+
 const updateNovedad = (req, res) => {
 	const { id } = req.params;
 	Novedad.findByIdAndUpdate(id, req.body, (err, novedad) => {
@@ -30,21 +40,23 @@ const updateNovedad = (req, res) => {
 	})
 }
 
-const getNovedad = (req, res) => {
-    let id = req.params.id
-    Novedad.findById(id, (err, novedad) => {
-        if (err) {
-            res.status(400).send({ message: err })
-        }
-        res.status(200).send(novedad);
-    })
-}
 
+const deleteNovedad = (req, res) => {
+	let id = req.params.id
+	Novedad.findByIdAndDelete(id, (err, result) => {
+		if (err) {
+			res.status(400).send({ message: err })
+		}
+		res.status(200).send(result)
+	}
+	)
+}
 
 module.exports = {
 	createNovedad,
 	getNovedades,
+	getNovedad,
 	updateNovedad,
-	getNovedad
+	deleteNovedad
 }
 
