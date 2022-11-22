@@ -15,8 +15,9 @@ crear archivo `.env` con las siguientes variables de ambiente definidas:
 
 crear un directorio llamado "uploads"
 
-Finalmente,
+Ejecutar API:
 
 ### `npm start`
+
 
 

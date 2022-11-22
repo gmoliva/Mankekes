@@ -24,7 +24,7 @@ const createUsuario = async (req, res) => {
 }
 
 // OBTENER LISTA DE USUARIOS
-const getUsuario = (req, res) => {
+const getUsuarios = (req, res) => {
 
 	Usuario.find({}, (err, usuarios) => {
 		if (err) {
@@ -35,7 +35,7 @@ const getUsuario = (req, res) => {
 }
 
 // OBTENER UN USUARIO ESPECIFICO
-const getSpecific = (req, res) => {
+const getUsuario = (req, res) => {
     let id = req.params.id
     Usuario.findById(id, (err, usuarios) => {
         if (err) {
@@ -49,8 +49,16 @@ const getSpecific = (req, res) => {
 const updateUsuario = (req, res) => {
     let id = req.params.id
     Usuario.findByIdAndUpdate(id, req.body, (err, usuario) => {
-		if (err) return res.status(400).send({ message: "Error al modificar novedad" })
+		if (err) return res.status(400).send({ message: "Error al modificar usuario" })
 		res.send(usuario)
+	})
+}
+// ELIMINAR USUARIO
+const deleteUsuario = (req, res) => {
+	let id = req.params.id
+	Usuario.findByIdAndDelete(id, (err, result) => {
+		if (err) res.status(400).send({ message: err })
+		res.status(200).send(result)
 	})
 }
 
@@ -81,9 +89,10 @@ const getAllConserjes = (req, res) => {
 
 module.exports = {
   createUsuario,
+  getUsuarios,
   getUsuario,
-  getSpecific,
   updateUsuario,
+  deleteUsuario,
   getCurrentAdmin,
   getAllConserjes
 }
