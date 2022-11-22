@@ -2,19 +2,19 @@ const Turno = require('../models/Turno');
 const mailer = require('../controllers/mailerController');
 
 const createTurno = (req, res) => {
+	
 	const {
-		fecha,
 		tipo,
-		idUsuario,
-		entrada,
-		salida
+		idUsuario
 	} = req.body
+
+	let fecha = new Date();
+
 	const newTurno = new Turno({
 		fecha,
 		tipo,
-		idUsuario,
-		entrada,
-		salida
+		idUsuario
+
 	})
 
 	newTurno.save((err, turno) => {
@@ -72,6 +72,11 @@ const deleteTurno = (req, res) => {
 
 const setEntradaSalida = async (req, res) => {
 	let id = req.params.id
+	let datetime = new Date();
+
+	if (req.body.entrada) req.body.entrada = datetime;
+	if (req.body.salida) req.body.salida = datetime;
+
 
 	Turno.findById(id)
 		.select('email')

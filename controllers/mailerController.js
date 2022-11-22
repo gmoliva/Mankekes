@@ -48,7 +48,7 @@ const sendEmail = async (request, email) => {
 
 
 
-    console.log("Message sent: %s", info.messageId);
+    // console.log("Message sent: %s", info.messageId);
     // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
     // Preview only available when sending through an Ethereal account
@@ -57,8 +57,8 @@ const sendEmail = async (request, email) => {
 
     //  if(info.messageId)	return res.status(201).send({msg: "mail sent"});
     //  else return res.status(400).send({msg : "mail could not be sent"})
-    if (info.messageId) return console.log("mail sent")
-    else return console.log("mail could not be sent")
+    // if (info.messageId) return console.log("mail sent")
+    // else return console.log("mail could not be sent")
 }
 
 
