@@ -52,11 +52,27 @@ const deleteNovedad = (req, res) => {
 	)
 }
 
+const getnovedadTurno = (req, res) => {
+	let id =  req.params.id
+	Novedad.find({})
+	.populate ('idTurno')
+	.exec ((err, result) => {
+	//console.log ('Tulon 1:'+result.idTurno)
+	//console.log ('Tulon 2:'+result.idTurno._id)
+	if (err) {
+		res.status(400).send({ message: err })
+			}
+			res.status(200).send(result)
+	})
+
+}
+
 module.exports = {
 	createNovedad,
 	getNovedades,
 	getNovedad,
 	updateNovedad,
-	deleteNovedad
+	deleteNovedad,
+	getnovedadTurno
 }
 

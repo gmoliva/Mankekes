@@ -5,8 +5,9 @@ const novedadController = require('../controllers/novedadController');
 
 api.post('/', novedadController.createNovedad);
 api.get('/', novedadController.getNovedades);
-api.get('/:id', novedadController.getNovedad);
+//api.get('/:id', novedadController.getNovedad);
 api.put('/:id', novedadController.updateNovedad);
 api.delete('/:id', novedadController.deleteNovedad);
+api.get('/test/', novedadController.getnovedadTurno);
 
 module.exports = api;
