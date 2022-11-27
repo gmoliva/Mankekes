@@ -29,7 +29,6 @@ app.use('/api/Novedad', novedadRoute)
 app.use('/api/Usuario', usuarioRoute)
 app.use('/api/Upload', uploadRoute)
 
-
 mongoose.connect(process.env.URI, options, (error) => {
   if (error) console.log(error)
   else {
