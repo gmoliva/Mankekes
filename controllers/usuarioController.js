@@ -13,15 +13,24 @@ const createUsuario = async (req, res) => {
         estadoUsuario
 	});
 
+	let CU = req.params.typeUser
+
 	newUsuario.save((err, usuario) => {
+		
+	
 		if (err){	
 			return res.status(400).send({ message: "Error al guardar" })
-		}
+		}else
 
+		if (CU == 1){	
 		res.status(200).send(usuario)
-	})
+		}else 
+		return res.status(400).send({ message: "No tiene los permisos para crear un usuario" })
 
-}
+		})
+	} 
+
+
 
 // OBTENER LISTA DE USUARIOS
 const getUsuarios = (req, res) => {
@@ -48,17 +57,29 @@ const getUsuario = (req, res) => {
 // MODIFICAR EL ESTADO LABORAL DE UN USUARIO
 const updateUsuario = (req, res) => {
     let id = req.params.id
+	let CU = req.params.typeUser
+
     Usuario.findByIdAndUpdate(id, req.body, (err, usuario) => {
 		if (err) return res.status(400).send({ message: "Error al modificar usuario" })
+		else
+		if (CU == 1){
 		res.send(usuario)
+		}else 
+		return res.status(400).send({ message: "No tiene los permisos para actualizar un usuario" })
 	})
 }
 // ELIMINAR USUARIO
 const deleteUsuario = (req, res) => {
 	let id = req.params.id
+	let CU = req.params.typeUser
+	
 	Usuario.findByIdAndDelete(id, (err, result) => {
 		if (err) res.status(400).send({ message: err })
+		else
+		if (CU == 1){
 		res.status(200).send(result)
+		}else 
+		return res.status(400).send({ message: "No tiene los permisos para eliminar un usuario" })
 	})
 }
 
