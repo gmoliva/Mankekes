@@ -107,6 +107,8 @@ const getAllConserjes = (req, res) => {
 	})
 }
 
+// mover
+
 
 module.exports = {
   createUsuario,

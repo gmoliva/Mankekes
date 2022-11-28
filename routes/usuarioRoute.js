@@ -11,4 +11,5 @@ api.put('/update/:id/:typeUser', usuarioController.updateUsuario);
 api.get('/admin/', usuarioController.getCurrentAdmin);
 api.get('/conserje/', usuarioController.getAllConserjes);
 
+
 module.exports = api;

@@ -12,7 +12,8 @@ const turnoSchema = new Schema({
 	},
 	idUsuario: {
 		type: Schema.Types.ObjectId,
-		ref: 'Usuario'
+		ref: 'Usuario',
+		required: true
 	},
 	entrada: {type: Date},
 	salida: {type: Date}
