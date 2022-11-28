@@ -17,22 +17,22 @@ const sendEmail = async (request, email) => {
         title = "Notificacion de entrada"
         content = "Conserje ha entrado."
     }
-
+    else
     if (request.body.salida) {
         title = "Notificacion de salida"
         content = "Conserje se ha retirado."
     }
-
+    else
     if (request.body.asunto) {
         title = "Nueva novedad: " + request.body.asunto
         content = "" + request.body.descripcion
     }
-
+    else
     if (request.body.justificacion) {
         title = "Conserje no puede asistir a su turno"
         content = request.body.justificacion
     }
-
+    else return console.log("no se ha encontrado ningun parametro por el que enviar correo")
     // let directory = mail
 
     const msg = {
@@ -61,9 +61,23 @@ const sendEmail = async (request, email) => {
     // else return console.log("mail could not be sent")
 }
 
+const sendCustomEmail = async (email, message) => {
+
+    const msg = {
+        from: '"Mankekes Platform" <noreply@mankekesIECI.com>', // sender address
+        to: email, // list of receivers
+        subject: "Notificación de Administrador", // Subject line
+        text: message, // plain text body
+        //  html: "<b>Hello world?</b>", // html body
+    }
+    
+    const info = await transporter.sendMail(msg);
+
+}
 
 
 module.exports = {
-    sendEmail
+    sendEmail,
+    sendCustomEmail
 
 }

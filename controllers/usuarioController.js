@@ -1,4 +1,5 @@
 const Usuario = require('../models/Usuario')
+const mailer = require('../controllers/mailerController');
 
 // CREACION DE NUEVO USUARIO
 const createUsuario = async (req, res) => {
@@ -107,6 +108,21 @@ const getAllConserjes = (req, res) => {
 	})
 }
 
+// MAIL ADMIN
+const sendNotification = (req, res) => {
+	let id = req.params.id
+
+	Usuario.findById(id, (err,user) => {
+		if (err) res.status(400).send({msg: err})
+		//console.log(req.body.email + "    " + req.body.message  )
+		if(user.tipoUsuario == 0){
+			mailer.sendCustomEmail(req.body.email, req.body.message)
+			return res.status(200).send({msg: "mail ha sido enviado correctamente"})
+			
+		}
+		return res.status(401).send({msg: "mail no se ha podido enviar"})	
+	})
+}
 
 module.exports = {
   createUsuario,
@@ -115,5 +131,6 @@ module.exports = {
   updateUsuario,
   deleteUsuario,
   getCurrentAdmin,
-  getAllConserjes
+  getAllConserjes,
+  sendNotification
 }
