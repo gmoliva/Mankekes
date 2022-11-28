@@ -81,10 +81,10 @@ const enviarJustificacion = (req, res) => {
 		idUsuario
 	})
 	
-	mailer.enviarJustificacion(req)
-
+	
 	newNovedad.save((err, novedad) => {
 		if (err) return res.status(400).send({ message: err })
+		mailer.enviarJustificacion(req)
 		res.status(200).send(novedad)
 	})
 	
