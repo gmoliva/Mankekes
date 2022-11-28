@@ -18,6 +18,7 @@ const turnoRoute = require('./routes/turnoRoute')
 const novedadRoute = require('./routes/novedadRoute')
 const usuarioRoute = require('./routes/usuarioRoute')
 const uploadRoute = require('./routes/uploadRoute')
+const mailerRoute = require('./routes/mailerRoute')
 
 const app = express();
 app.use(cors());
@@ -28,6 +29,7 @@ app.use('/api/Turno', turnoRoute)
 app.use('/api/Novedad', novedadRoute)
 app.use('/api/Usuario', usuarioRoute)
 app.use('/api/Upload', uploadRoute)
+app.use('/api/mailer', mailerRoute)
 
 mongoose.connect(process.env.URI, options, (error) => {
   if (error) console.log(error)

@@ -1,7 +1,5 @@
 const Novedad = require('../models/Novedad')
-const Turno = require('../models/Turno')
 const mailer = require('../controllers/mailerController')
-
 
 const createNovedad = (req, res) => {
 	const { asunto, descripcion, idTurno, idUsuario } = req.body
@@ -72,7 +70,7 @@ const getnovedadTurno = (req, res) => {
 }
 
 const enviarJustificacion = (req, res) => {
-	let idUsuario = req.params.id
+	let idUsuario = req.params.idUsuario
 	
 	const { justificacion, idTurno } = req.body
 	const newNovedad = new Novedad({
@@ -82,24 +80,17 @@ const enviarJustificacion = (req, res) => {
 		idTurno,
 		idUsuario
 	})
+	
+	mailer.enviarJustificacion(req)
 
-	req.body.idUsuario = ""
-
-	Turno.findByIdAndUpdate(idTurno, req.body.idUsuario)//, (err, result) => {
-		//if (err) console.log( {msg: err} );
-		//console.log(result)
-	//})
-	Turno.findById(idTurno).select('email').populate('idUsuario').exec((err, user) => {
-		if (err) return res.status(400).send({msg: err})
-		//console.log(user.idUsuario.email)
-		//mailer.sendEmail(req, user.email)
-		newNovedad.save((err, novedad) => {
-			if (err) return res.status(400).send({ message: err })
-			mailer.sendEmail(req, user.idUsuario.email)
-			res.status(200).send(novedad)
-		})
+	newNovedad.save((err, novedad) => {
+		if (err) return res.status(400).send({ message: err })
+		res.status(200).send(novedad)
 	})
+	
 }
+
+
 
 module.exports = {
 	createNovedad,

@@ -1,5 +1,5 @@
 const Turno = require('../models/Turno');
-const mailer = require('../controllers/mailerController');
+const mailer = require('../controllers/mailerController')
 
 const createTurno = (req, res) => {
 	
@@ -69,31 +69,24 @@ const deleteTurno = (req, res) => {
 
 }
 
-
 const setEntradaSalida = async (req, res) => {
-	let id = req.params.id
+	let idTurno = req.params.id
 	let datetime = new Date();
 
 	if (req.body.entrada) req.body.entrada = datetime;
 	if (req.body.salida) req.body.salida = datetime;
 
+	mailer.sendShiftEmail(req)
 
-	Turno.findById(id)
-		.select('email')
-		.populate('idUsuario')
-		.exec((err, result) => {
-
-			mailer.sendEmail(req, result.idUsuario.email)
-
-			Turno.findByIdAndUpdate(id, req.body, (err, turno) => {
-				if (err) return res.status(400).send({
-					"error": err
-				})
-				res.status(201).send(turno)
-			})
+	Turno.findByIdAndUpdate(idTurno, req.body, (err, turno) => {
+		if (err) return res.status(400).send({
+			"error": err
 		})
-
+		res.status(201).send(turno)
+	})
 }
+
+
 
 
 module.exports = {

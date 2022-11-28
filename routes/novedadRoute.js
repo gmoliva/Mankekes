@@ -9,7 +9,8 @@ api.get('/:id', novedadController.getNovedad);
 api.put('/:id', novedadController.updateNovedad);
 api.delete('/:id', novedadController.deleteNovedad);
 //api.get('/test/', novedadController.getnovedadTurno);
-api.post('/justificar/:id', novedadController.enviarJustificacion)
+api.post('/justificar/:idUsuario', novedadController.enviarJustificacion);
+
 
 
 module.exports = api;
