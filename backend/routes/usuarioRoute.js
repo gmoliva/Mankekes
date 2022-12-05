@@ -10,6 +10,6 @@ api.delete('/:id/:typeUser', usuarioController.deleteUsuario);
 api.put('/update/:id/:typeUser', usuarioController.updateUsuario);
 api.get('/admin/', usuarioController.getCurrentAdmin);
 api.get('/conserje/', usuarioController.getAllConserjes);
-
+api.post('/usr/login/', usuarioController.login)
 
 module.exports = api;

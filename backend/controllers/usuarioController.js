@@ -107,6 +107,15 @@ const getAllConserjes = (req, res) => {
 	})
 }
 
+const login = (req, res) => {
+	
+	Usuario.findOne({rut: req.body.rut}, (err, result) => {
+		if (err) return res.status(400).send({msg: err})
+		
+		if(result)
+		return res.status(200).send({message: "Logged in correctly", user: result.tipoUsuario})
+	})
+}
 // mover
 
 
@@ -117,5 +126,6 @@ module.exports = {
   updateUsuario,
   deleteUsuario,
   getCurrentAdmin,
-  getAllConserjes
+  getAllConserjes,
+  login
 }
