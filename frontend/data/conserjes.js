@@ -6,11 +6,26 @@ const login = (rut) => {
     return response
 }
 
+const getConserjes = async () => {
+    const response = await axios.get(`http://localhost:5000/api/Usuario`)
+    return response
+    
+}
+
+const getConserje = async (id) => {
+    console.log(id)
+    const response = await axios.get(`http://localhost:5000/api/Usuario/search/${id}`)
+    return response
+    
+}
+
 module.exports = {
-    login
+    login,
+    getConserjes,
+    getConserje
 }
 /*
-
+/ver/${conserje._id}
 
 const getConserjes = async () => {
     const response = await axios.get(`${process.env.SERVIDOR}/products`);
