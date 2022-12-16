@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getConserje } from '../../../data/conserjes'
+import { getUsuario } from '../../../data/usuarios'
 import { sendMail } from '../../../data/mailer'
 import { Button, Container, Heading, HStack, Stack } from '@chakra-ui/react'
 import InputForm from '../../../components/InputForm'
@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import Swal from 'sweetalert2'
 
 export const getServerSideProps = async (context) => {
-    const response = await getConserje(context.query.sendMsg)
+    const response = await getUsuario(context.query.sendMsg) 
     return {
         props: {
             data: response.data
