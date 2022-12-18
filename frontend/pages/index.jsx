@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Button, Container, Heading, HStack, Input, Stack, Table, Thead, Tr, Td, Th, Tbody, FormControl, FormLabel } from '@chakra-ui/react'
 //import { getProducts } from '../data/products'
 import { useRouter } from 'next/router'
-import { login } from '../data/conserjes'
+import { login } from '../data/usuarios'
 
 const Index = () => {
 
